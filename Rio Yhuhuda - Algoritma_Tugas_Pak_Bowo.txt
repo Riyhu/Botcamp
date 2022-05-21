@@ -1,0 +1,199 @@
+
+
+//---------------- DIAGONAL DIFFERENCE -------------------
+    public static int diagonalDifference(List<List<int>> arr)
+    {
+        int sum1=0;
+        int sum2=0;
+        int hasil=0;
+        int a= arr.Count()-1;
+        for(int j = 0; j < arr.Count; j++,a--)
+        {
+            for(int k = 0; k < arr.Count; k++)
+            {
+                if(k == j)
+                {
+                    sum1+=arr[j][k];
+                }
+                if(k == a)
+                {
+                    sum2+=arr[j][k];
+                }
+            }
+        }
+        hasil = sum1-sum2;
+        return Math.Abs(hasil);
+    }
+
+
+
+
+//--------------- Nomor 2 :  lintasan linier (WALK AND JUMP) ------------------------//
+
+public static void JalanLoncaat()
+        {
+			int W, J;
+			//---- deklarasi char array------// 
+			Console.Write("Input character : ");
+			char[] huruf = Console.ReadLine().ToUpper().ToCharArray();
+
+			//---------------------------------//
+			W = 0;
+			J = 0;
+			int tampung =0;
+			//fungsi equals
+			for (int i = 0; i < huruf.Length; i++)
+			{
+				if (huruf[i].Equals('W'))
+				{
+					W += 1;
+				}
+				else if (huruf[i].Equals('J'))
+				{
+					J -= 2;
+				}
+				else
+				{
+					Console.WriteLine("Wrong Input");
+				}
+				tampung = tampung + (W+J);
+				if(tampung<=0){
+					break;
+				}
+			}
+			int hasil = 0;
+			hasil += (W + J);
+            if (hasil <1)
+            {
+				Console.WriteLine("Jim died");
+            }
+            else
+            {
+				Console.WriteLine(hasil);
+	    }
+			
+}
+
+//------------------- Nomor 3 : BUAH APEL & Semangka -----------//
+        public static void BUAH()
+        {
+            Console.Write("Masukan Nama buah dan jumlahnya {Contoh -> apel : 1 , semangka : 1} : ");
+            string s = Console.ReadLine().ToLower().Replace(" ","").Replace(".","");
+            char[] zz = {':', ',',' '};
+            string[] hsil = s.Split(zz);
+            int appel = 0;
+            int semangka = 0;
+            for (int i = 0; i < hsil.Length; i=i+2)
+            {
+                if (hsil[i] == "apel")
+                {
+                    appel = appel + Int32.Parse(hsil[i + 1]);    
+                }else if (hsil[i]=="semangka")
+                {
+                    semangka = semangka + Int32.Parse(hsil[i + 1]);
+                }
+                 
+            }
+            Console.WriteLine("jumlah apel : "+appel + "\njumlah semangka : "+ semangka);
+        }
+
+
+
+//---------------- Nomor 4 : Kertas A6 -----------------//
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Masukkan Ukuran Kertas {A0 ~ A6} : ");
+	string str = Console.ReadLine();
+	char last = str[str.Length - 1]; //ambil character trakhir
+	int convINT = (int)Char.GetNumericValue(last); //convert char ke int
+	int hasil = (int)Math.Pow(2, (6 - convINT)); //di konvert ke integer karena pow hasilnya double	
+	Console.WriteLine($"Jumlah Kertas A6 untuk membuat A{last} : {hasil}");
+    }
+}
+
+
+//------------------------------------ Nomor 5 ------------------------//
+static List<int> freqQuery(List<List<int>> queries) {
+        List<int> hasil = new List<int>();
+        int count = 0;
+        for(int i = 0; i < queries.Count ; i++){
+            if(queries[i][0] == 3){
+                count++;
+                if(count == 1){
+                            hasil.Add(0);
+                }
+                for(int j = 0; j <= i; j++){
+                    if(queries[j][1] % 2 == 0){
+                        if(hasil.Count < count){
+                         hasil.Add(1);
+                        }
+                    }
+                }
+            }
+        }
+        return hasil;
+
+    }
+
+
+
+
+//------------------- Nomor 6 -------------------------------//
+public static int sherlockAndAnagrams(string s)
+    {
+        var set = new Dictionary<string, int>();
+        var cnth = 0; //inisialisasi HITUNG / COUNT
+        for (int len = 1; len <= s.Length - 1; len++) //mulai dari index ke 1
+        for (int i = 0; i <= s.Length - len; i++) //mulai dari index ke 0
+        {
+            var norm = new string(s.Substring(i, len).OrderBy(c => c).ToArray()); //bikin variable baru utk menampung index ke 0 dan 1 lalu di masukan ke array
+
+            if (set.ContainsKey(norm)) //di cocokan antara index ke 0 dan 1
+            {
+                cnth += set[norm];
+                set[norm] += 1; 
+            }
+            else
+            set[norm] = 1;
+        }
+        return cnth;
+    }
+
+
+//------------------------------------ NOMOR 7 Vokal dan Konsonant -----------------------//
+ public static void VokalKonsonant()
+        {
+            Console.Write("Masukan Kalimat : ");
+            string s = Console.ReadLine().ToLower().Replace(" ","");
+            char[] hsil = s.ToCharArray();
+            Array.Sort(hsil);
+            List<char> vowel = new List<char>();
+            List<char> consonant = new List<char>();
+            for (int i = 0; i < hsil.Length; i++)
+            {
+                if (hsil[i].Equals('a') || hsil[i].Equals('i') || hsil[i].Equals('u') || hsil[i].Equals('e') || hsil[i].Equals('o'))
+                {
+                    vowel.Add(hsil[i]);
+                }
+                else
+                {
+                    consonant.Add(hsil[i]);
+                }
+            }
+            Console.Write($"Huruf Vokal : ");
+            foreach (var item in vowel)
+            {
+                Console.Write(item);
+            }
+            Console.WriteLine();
+            Console.Write($"Huruf Konsonan : ");
+            foreach (var item in consonant)
+            {
+                Console.Write(item);
+            }
+
+        }
